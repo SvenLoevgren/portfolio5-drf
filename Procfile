@@ -1,1 +1,1 @@
-web: gunicorn portfolio4_fastfood.wsgi
+web: gunicorn django_project_fastfood.wsgi
