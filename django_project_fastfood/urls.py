@@ -1,5 +1,8 @@
-"""
-Directory for URL's changed to APP.urls, 
-though experience of circular Issues in this specific project.
+from django.contrib import admin
+from django.urls import include, path
 
-"""
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('fastfood.urls')), 
+]
+

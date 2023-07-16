@@ -3,8 +3,6 @@ from .views import fastfood_home, booking, contactus, booking_list, edit_booking
 from django.urls import include, path
 from django.conf import settings
 
-app_name = 'fastfood'
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', fastfood_home, name='fastfood_home'),

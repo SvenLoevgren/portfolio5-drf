@@ -84,7 +84,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'fastfood.urls'  # APP urls
+ROOT_URLCONF = 'django_project_fastfood.urls' 
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
