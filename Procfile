@@ -1,0 +1,1 @@
+web: gunicorn portfolio4_fastfood.wsgi

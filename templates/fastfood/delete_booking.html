@@ -1,0 +1,24 @@
+{% extends 'fastfood/base_head.html' %}
+
+
+{% block content %}
+    <div id="div5" class="container-fluid">
+        <div class="bg-light p-5 text-center">
+            <div class="container">
+                <h1 class="mb-4">Your booking has been deleted!</h1>
+                <hr> 
+                <p class="mb-4" style="line-height: 1.5;">Please contact us if there is a problem -via our <br><a id="contact-link" href="{% url 'contactus' %}">
+                    contact page! <i class="fa fa-envelope"></i></a><br>Or<br> Navigate to our 
+                    <br><a id="contact-link" href="{% url 'booking' %}">booking link <i class="fa fa-calendar"></i></a><br> 
+                    to generate a new booking. <hr> Check below if you have any existing bookings!
+                </p>
+                {% if user.is_authenticated %}
+                <button type="button" id="join-button" class="btn btn-secondary mx-auto" 
+                onclick="window.location.href='{% url 'bookings' %}'">View My Bookings!</button>
+                {% else %}
+                <button type="button" onclick="alert('Please login to view your bookings.')" id="join-button" class="btn btn-secondary mx-auto" href="#">View/Bookings!</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

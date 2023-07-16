@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700');
+
+
+/* ----------------------------------------Navbar */
+
+.navbar-brand-img {
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    transform-origin: center center;
+    zoom: 1.5;
+}    
+
+#navbar-color {
+    background: rgb(184, 183, 199);
+}
+
+.active {
+    font-weight: bold;
+}
+    
+/* ----------------------------------------Footer */
+    
+.social-links {
+    padding-bottom: 15px;
+}
+    
+.social-links li a i {
+    width: 32px;
+    height: 32px;
+    padding: 12px 0;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 7px;
+    text-align: center;
+    color: #3a07f0;
+    background: #f0eded;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+    
+.social-links li a i:hover {
+    background: #e84610;
+}
+    
+#footer-details {
+    padding: 10px;
+    background-color: rgb(206, 224, 218);
+    max-height: 16%
+}
+    
+/* ----------------------------------------Sections */
+
+/* Landing-page-aboutus-Section */
+
+.div-borders {
+    border: 3px solid #2e0363;
+    border-radius: 8px;
+}
+
+.div-borders:hover {
+    border-color: #ece9e9;
+}
+
+/* Set the height of each section to 100% vp */
+
+section {
+    height: 100vh;
+}
+    
+/* Set the image for the first section */
+
+#section1 {
+    background-image: url('../img/Background_1.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+        
+#section2 {
+    background-color: rgb(127, 131, 255);
+    margin-top: 0;
+}
+
+/* MAP image until API is configured for google MAP's */
+
+#section3 img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 66%;
+    padding-top: 6%;
+  }
+
+#section3 {
+    background: rgb(184, 183, 199);
+}
+
+/* Top-paddings to handle fixed nav-bar */
+
+#div4 {
+    padding-top: 11%;
+}
+
+#div5 {
+    padding-top: 7%;
+}
+
+#base_div {
+    padding-top: 8%;
+    background-color: #fafafa;
+}
+
+#message_div {
+    padding-top: 11%;
+    background-color: #fafafa;
+}
+
+/* Aboutus-page-Contactus-Form-Section */
+
+#section4 {
+    background-color:rgb(197, 199, 247);
+    background-size: 100% 100%;
+}
+
+#text-input-field {
+    border: 3px solid #2e0363;
+    border-radius: 8px;
+}
+
+#text-input-field:hover {
+    border-color: #ece9e9;
+}
+
+.field-text {
+    font-weight: bold;
+}
+
+/* Booking-page-Form-Section */
+
+#booking-tables {
+    background-color: rgb(188, 225, 235);
+    padding-bottom: 16%;
+}
+
+.messages {
+    font-size: large;
+    font-weight: bold;
+    color: rgb(145, 23, 62);
+}
+
+/* Booking_list-page-Form-Section */
+
+td:hover {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* -----------------------------------------Buttons */
+
+#join-button {
+    background-color: #f16c6b;
+    color: #fafafa;
+    font-weight: bold;
+}
+
+#delete-button {
+    background-color: #f16c6b;
+    color: #fafafa;
+    font-weight:bolder 
+}
+
+#delete-button:hover {
+    background-color: #f0f469;
+    color: #f53838;
+}
+
+#join-button:hover {
+    background-color: #fafafa;
+    color: #f16c6b;
+}
+
+/* -------------------------------------------links */
+
+#booking-link {
+    text-decoration: none;
+    color: black;    
+}
+
+#contact-link {
+    text-decoration: none;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;    
+}
+
+#contact-link:hover {
+    text-decoration: underline;  
+    font-weight: bold; 
+}
+
+#booking-link:hover {
+    text-decoration: underline;   
+}
+
+#contacting-link {
+    margin-top: 6%;
+}
+
+#contacting-link button {
+    margin-top: 4%;
+}
+
+/* -------------------------------------Mediascreens */
+
+@media screen and (max-width: 1000px){
+
+    #div4 {
+        padding-top: 19%;
+    }
+
+    #div5 {
+        padding-top: 16%;
+    }
+
+    #base_div {
+        padding-top: 14%;
+    }
+
+    #message_div {
+        padding-top: 16%;
+    }
+
+}
+
+@media screen and (max-width: 600px){
+
+    #div4 {
+        padding-top: 32%;
+    }
+
+    #div5 {
+        padding-top: 29%;
+    }
+
+    #base_div {
+        padding-top: 27%;
+    }
+
+    #message_div {
+        padding-top: 33%;
+    }
+
+}
+  
