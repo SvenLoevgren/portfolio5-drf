@@ -10,8 +10,25 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import BookingSerializer
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from .serializers import BookingSerializer
 
 
+class BookingListCreateAPIView(ListCreateAPIView):
+    # permission_classes = [IsAuthenticated]
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+class BookingDetailAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
+
+"""
 class BookingListView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -26,20 +43,7 @@ class BookingListView(APIView):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class BookingListAPIView(APIView):
-    def get(self, request):
-        bookings = Booking.objects.filter(user=request.user)
-        serializer = BookingSerializer(bookings, many=True)
-        return Response(serializer.data)
-
-    def post(self, request):
-        serializer = BookingSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+"""
 
 
 class BookingUpdateView(LoginRequiredMixin, UpdateView):
