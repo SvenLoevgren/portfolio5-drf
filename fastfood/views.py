@@ -15,18 +15,21 @@ from .serializers import BookingSerializer
 from rest_framework.authentication import TokenAuthentication
 
 
-class BookingListCreateAPIView(ListCreateAPIView):
+class BookingListCreateAPIView(LoginRequiredMixin, ListCreateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-    queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+
+    def get_queryset(self):
+        return Booking.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
 
-
-class BookingDetailAPIView(RetrieveUpdateDestroyAPIView):
+class BookingDetailAPIView(LoginRequiredMixin, RetrieveUpdateDestroyAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
 
