@@ -21,6 +21,7 @@ load_dotenv()
 if os.path.isfile("env.py"):
     import env
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # PUBLIC_KEY = os.environ.get('PUBLIC_KEY')
-
+TOKEN_KEY = os.environ.get('TOKEN_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -67,6 +68,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'fastfood',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 
@@ -74,6 +76,14 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser'],
 }
 
 SESSION_COOKIE_AGE = 1800  # 30 minutes in seconds
