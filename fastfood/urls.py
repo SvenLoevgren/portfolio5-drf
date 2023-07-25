@@ -4,7 +4,6 @@ from django.urls import include, path
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', fastfood_home, name='fastfood_home'),
     path('accounts/', include('allauth.urls')),
     path('unauthorized/', unauthorized, name='unauthorized'),
