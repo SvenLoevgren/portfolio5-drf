@@ -12,12 +12,12 @@ from .serializers import BookingSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .serializers import BookingSerializer
-# from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import TokenAuthentication
 
 
 class BookingListCreateAPIView(ListCreateAPIView):
-    # authentication_classes = [TokenAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
 
