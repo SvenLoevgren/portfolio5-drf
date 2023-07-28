@@ -34,10 +34,19 @@ class BookingDetailAPIView(LoginRequiredMixin, RetrieveUpdateDestroyAPIView):
     serializer_class = BookingSerializer
 
 
-class MenuItemsListAPIView(ListAPIView):
-    queryset = MenuItem.objects.all()
-    serializer_class = MenuItemSerializer
+class MenuAPIView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
+    def get(self, request):
+        # Fetch menu items from the database
+        menu_items = MenuItem.objects.all()
+
+        # Serialize the menu items to JSON
+        serializer = MenuItemSerializer(menu_items, many=True)
+
+        # Return the serialized data as a JSON response
+        return Response(serializer.data)
 
 
 """
