@@ -20,3 +20,27 @@ class Availability(models.Model):
     time = models.TimeField()
     max_seats_available = models.PositiveIntegerField()
     num_available_seats = models.PositiveIntegerField()
+
+
+class MenuItem(models.Model):
+    CATEGORY_CHOICES = (
+        ('Rainbow Burgers', 'Rainbow Burgers'),
+        ('No chicken Burgers', 'No chicken Burgers'),
+        ('No chicken', 'No chicken'),
+        ('Wraps', 'Wraps'),
+        ('Wraps Dressings', 'Wraps Dressings'),
+        ('Accessories', 'Accessories'),
+        ('Desserts', 'Desserts'),
+        ('Dip', 'Dip'),
+        ('Drinks', 'Drinks'),
+        ('Add-ons', 'Add-ons'),
+        ('Snacks', 'Snacks'),
+    )
+
+    name = models.CharField(max_length=30)
+    category = models.CharField(max_length=30, choices=CATEGORY_CHOICES)
+    description = models.CharField(max_length=60)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def __str__(self):
+        return self.name

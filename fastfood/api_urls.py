@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import BookingListCreateAPIView, BookingDetailAPIView
+from .views import BookingListCreateAPIView, BookingDetailAPIView, MenuItemsListAPIView
 from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
