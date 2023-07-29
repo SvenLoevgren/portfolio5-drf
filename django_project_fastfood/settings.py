@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
+from datetime import timedelta
 
 # Load environment variables from .env file
 load_dotenv()
@@ -88,6 +89,11 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser'], """
+
+
+# Set token lifetime to 5 hours (adjust as needed)
+TOKEN_EXPIRATION = timedelta(hours=5)
+
 
 SESSION_COOKIE_AGE = 1800  # 30 minutes in seconds
 
