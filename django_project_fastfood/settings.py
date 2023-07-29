@@ -75,7 +75,10 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-    ],
+    ], 
+}
+
+"""
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
@@ -83,9 +86,8 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ],
     'DEFAULT_PARSER_CLASSES': [
-        'rest_framework.parsers.JSONParser'],
-}
-
+        'rest_framework.parsers.JSONParser'], """
+        
 SESSION_COOKIE_AGE = 1800  # 30 minutes in seconds
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
