@@ -38,9 +38,10 @@ class MenuItem(models.Model):
     )
 
     name = models.CharField(max_length=30)
-    category = models.CharField(max_length=30, choices=CATEGORY_CHOICES)
-    description = models.CharField(max_length=60)
+    title = models.CharField(max_length=30, choices=CATEGORY_CHOICES)
+    description = models.CharField(max_length=1000)
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    quantity = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name
