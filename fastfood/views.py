@@ -35,8 +35,8 @@ class BookingDetailAPIView(LoginRequiredMixin, RetrieveUpdateDestroyAPIView):
 
 
 class MenuAPIView(APIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [TokenAuthentication]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request):
         # Fetch menu items from the database
