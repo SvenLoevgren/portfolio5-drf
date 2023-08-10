@@ -15,6 +15,7 @@ import os
 import dj_database_url
 from dotenv import load_dotenv
 from datetime import timedelta
+from decouple import config
 
 # Load environment variables from .env file
 load_dotenv()
@@ -22,6 +23,7 @@ load_dotenv()
 if os.path.isfile("env.py"):
     import env
 
+JWT_SECRET_KEY = config("JWT_SECRET_KEY")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
