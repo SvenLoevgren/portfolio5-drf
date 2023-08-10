@@ -36,7 +36,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 TOKEN_KEY = os.environ.get('TOKEN_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["fastfood-drf-dfd5756f86e9.herokuapp.com", "localhost", "8000-svenloevgre-portfolio5d-7iyekitlmwd.ws-eu102.gitpod.io"]
 
