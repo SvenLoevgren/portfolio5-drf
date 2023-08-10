@@ -12,11 +12,11 @@ from .serializers import BookingSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from .serializers import BookingSerializer, MenuItemSerializer
-from rest_framework.authentication import TokenAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class BookingListCreateAPIView(LoginRequiredMixin, ListCreateAPIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = BookingSerializer
 
@@ -28,14 +28,14 @@ class BookingListCreateAPIView(LoginRequiredMixin, ListCreateAPIView):
 
 
 class BookingDetailAPIView(LoginRequiredMixin, RetrieveUpdateDestroyAPIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
 
 
 class MenuAPIView(APIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
     def get(self, request):

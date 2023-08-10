@@ -70,10 +70,26 @@ INSTALLED_APPS = [
     'corsheaders',
     'fastfood',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'rest_framework',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=5),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    'SLIDING_TOKEN_LIFETIME': timedelta(days=1),
+    'SLIDING_TOKEN_REFRESH_LIFETIME_GRACE_PERIOD': timedelta(days=1),
+    'SLIDING_TOKEN_REFRESH_LIFETIME_ALLOW_SAME_ORIGIN': False,
+    'SLIDING_TOKEN_REFRESH_LIFETIME_ALTERNATE_REFRESH_URLS': None,
+}
+
+"""
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
@@ -81,6 +97,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated'],
 }
+
+"""
 
 
 """
