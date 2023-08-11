@@ -15,11 +15,13 @@ class BookingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Booking
-        fields = '__all__'
+        fields = '__all__' 
 # recommended fields if not using "all" = ['id', 'customer_name', 'email', 'phone_number', 'date', 'time', 'num_seats', 'user']
 
 
 class MenuItemSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
     class Meta:
         model = MenuItem
-        fields = ['id', 'name', 'category', 'description', 'price', 'quantity']
+        fields = '__all__' 
