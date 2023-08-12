@@ -21,6 +21,7 @@ class BookingSerializer(serializers.ModelSerializer):
 
 class MenuItemSerializer(serializers.ModelSerializer):
     user = UserSerializer()
+    description = serializers.CharField(source='get_description_display')
 
     class Meta:
         model = MenuItem
