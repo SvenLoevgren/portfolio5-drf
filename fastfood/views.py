@@ -10,18 +10,23 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import BookingSerializer
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
+from rest_framework.generics import (
+    ListCreateAPIView, RetrieveUpdateDestroyAPIView,
+    ListAPIView, DestroyAPIView
+)
 from .serializers import BookingSerializer, MenuItemSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.contrib.auth.decorators import user_passes_test
 
 
-# ------------------------------------------------------Defining protection for drf bookings
+# ------------------------------------------------------User settings for drf bookings
 
 def user_is_owner(user, user_id):
     return str(user.id) == user_id
 
 # ------------------------------------------------------Menu Views for REACT app
+
+# ---------------------------------------------Menu Fetch
 
 
 class MenuAPIView(APIView):
@@ -37,6 +42,15 @@ class MenuAPIView(APIView):
 
         # Return the serialized data as a JSON response
         return Response(serializer.data)
+
+# ---------------------------------------------Menu Delete
+
+
+class MenuItemDeleteView(DestroyAPIView):
+    queryset = MenuItem.objects.all()  # Assuming you have a MenuItem model
+    serializer_class = MenuItemSerializer  # Adjust serializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
 # ------------------------------------------------------Booking Views for drf
