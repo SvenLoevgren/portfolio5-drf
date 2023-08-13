@@ -13,25 +13,15 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from .serializers import BookingSerializer, MenuItemSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from django.contrib.auth.decorators import user_passes_test
 
 
-class BookingListCreateAPIView(LoginRequiredMixin, ListCreateAPIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-    serializer_class = BookingSerializer
+# ------------------------------------------------------Defining protection for drf bookings
 
-    def get_queryset(self):
-        return Booking.objects.filter(user=self.request.user)
+def user_is_owner(user, user_id):
+    return str(user.id) == user_id
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-
-class BookingDetailAPIView(LoginRequiredMixin, RetrieveUpdateDestroyAPIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-    queryset = Booking.objects.all()
-    serializer_class = BookingSerializer
+# ------------------------------------------------------Menu Views for REACT app
 
 
 class MenuAPIView(APIView):
@@ -49,25 +39,73 @@ class MenuAPIView(APIView):
         return Response(serializer.data)
 
 
-"""
-class BookingListView(APIView):
-    permission_classes = [IsAuthenticated]
+# ------------------------------------------------------Booking Views for drf
 
-    def get(self, request, format=None):
-        bookings = Booking.objects.filter(user=request.user)
-        serializer = BookingSerializer(bookings, many=True)
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
-        serializer = BookingSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-"""
+# ---------------------------------------------Booking Create
 
 
-class BookingUpdateView(LoginRequiredMixin, UpdateView):
+def booking(request):
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.user = request.user
+            booking.save()
+            messages.success(request, 'Your booking has been confirmed, we will contact you via email!')
+            return redirect('bookings')
+    else:
+        form = BookingForm()
+    return render(request, 'fastfood/booking.html', {'form': form})
+
+# ---------------------------------------------Booking List
+
+
+def booking_list(request):
+    bookings = Booking.objects.filter(user=request.user)
+    context = {'bookings': bookings}
+    return render(request, 'fastfood/booking_list.html', context)
+
+# --------------------------------------------Booking Details
+
+
+def edit_booking(request, user_id, booking_id):
+    if request.user.is_authenticated and str(request.user.id) == user_id:
+        booking = get_object_or_404(Booking, id=booking_id, user_id=user_id)
+        context = {
+            'booking_id': booking_id,
+            'booking': booking,
+            'user_id': user_id
+        }
+        return render(request, 'fastfood/edit_booking.html', context)
+    else:
+        # Handle unauthorized access if user tries to change URL in the web-browser
+        return redirect('unauthorized')
+
+# --------------------------------------------Booking Detele
+
+
+def delete_booking(request):
+    return render(request, 'fastfood/delete_booking.html')
+
+
+class ProtectedBookingDeleteView(LoginRequiredMixin, DeleteView):
+    model = Booking
+    success_url = reverse_lazy('delete_booking')
+    template_name = 'fastfood/booking_confirm_delete.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(user=self.request.user)
+
+
+protected_delete_view = user_passes_test(
+    lambda u: user_is_owner(u, user_id), login_url='unauthorized')
+(ProtectedBookingDeleteView.as_view())
+
+# --------------------------------------------Booking Update
+
+
+class ProtectedBookingUpdateView(LoginRequiredMixin, UpdateView):
     model = Booking
     fields = ['customer_name', 'email', 'phone_number', 'date', 'time', 'num_seats']
     success_url = reverse_lazy('bookings')
@@ -87,65 +125,24 @@ class BookingUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class BookingDeleteView(LoginRequiredMixin, DeleteView):
-    model = Booking
-    success_url = reverse_lazy('delete_booking')
-    template_name = 'fastfood/booking_confirm_delete.html'
+protected_update_view = user_passes_test(
+    lambda u: user_is_owner(u, user_id), login_url='unauthorized')
+(ProtectedBookingUpdateView.as_view())
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(user=self.request.user)
+
+def booking_update(request):
+    return render(request, 'fastfood/booking_form.html')
+
+# --------------------------------------------------------Drf app views
 
 
 def fastfood_home(request):
     return render(request, 'fastfood/fastfood_home.html')
 
 
-def booking(request):
-    if request.method == 'POST':
-        form = BookingForm(request.POST)
-        if form.is_valid():
-            booking = form.save(commit=False)
-            booking.user = request.user
-            booking.save()
-            messages.success(request, 'Your booking has been confirmed, we will contact you via email!')
-            return redirect('bookings')
-    else:
-        form = BookingForm()
-    return render(request, 'fastfood/booking.html', {'form': form})
-
-
 def contactus(request):
     return render(request, 'fastfood/contactus.html')
 
 
-def delete_booking(request):
-    return render(request, 'fastfood/delete_booking.html')
-
-
-def booking_update(request):
-    return render(request, 'fastfood/booking_form.html')
-
-
 def unauthorized(request):
     return render(request, 'fastfood/unauthorized.html')
-
-
-def edit_booking(request, user_id, booking_id):
-    if request.user.is_authenticated and str(request.user.id) == user_id:
-        booking = get_object_or_404(Booking, id=booking_id, user_id=user_id)
-        context = {
-            'booking_id': booking_id,
-            'booking': booking,
-            'user_id': user_id
-        }
-        return render(request, 'fastfood/edit_booking.html', context)
-    else:
-        # Handle unauthorized access if user tries to change URL in the web-browser
-        return redirect('unauthorized')
-
-
-def booking_list(request):
-    bookings = Booking.objects.filter(user=request.user)
-    context = {'bookings': bookings}
-    return render(request, 'fastfood/booking_list.html', context)
