@@ -83,10 +83,10 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=5),
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
-    'SLIDING_TOKEN_LIFETIME': timedelta(days=1),
-    'SLIDING_TOKEN_REFRESH_LIFETIME_GRACE_PERIOD': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),  # Longer access token lifetime
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=30),  # Refresh token lifetime
+    'SLIDING_TOKEN_LIFETIME': timedelta(days=30),
+    'SLIDING_TOKEN_REFRESH_LIFETIME_GRACE_PERIOD': timedelta(days=7),  # Grace period for token refresh
     'SLIDING_TOKEN_REFRESH_LIFETIME_ALLOW_SAME_ORIGIN': False,
     'SLIDING_TOKEN_REFRESH_LIFETIME_ALTERNATE_REFRESH_URLS': None,
 }
@@ -111,10 +111,6 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser'
     ],
  """
-
-
-# Set token lifetime to 5 hours (adjust as needed)
-TOKEN_EXPIRATION = timedelta(hours=5)
 
 
 SESSION_COOKIE_AGE = 1800  # 30 minutes in seconds
