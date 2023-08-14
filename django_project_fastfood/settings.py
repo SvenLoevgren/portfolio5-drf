@@ -145,7 +145,6 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
 
 CORS_ALLOW_CREDENTIALS = True
 
-
 ROOT_URLCONF = 'django_project_fastfood.urls' 
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
