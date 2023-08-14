@@ -52,17 +52,6 @@ class MenuItemDeleteView(DestroyAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def destroy(self, request, *args, **kwargs):
-        item_ids = self.request.data.get('item_ids', [])  # Get list of item IDs
-        deleted_items = []
-
-        for item_id in item_ids:
-            item = self.get_object()  # Fetch the item
-            item.delete()
-            deleted_items.append(item_id)
-
-        return Response({'message': f'Deleted items: {", ".join(deleted_items)}'}, status=status.HTTP_204_NO_CONTENT)
-
 
 # ------------------------------------------------------Booking Views for drf
 
