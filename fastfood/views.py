@@ -8,7 +8,7 @@ from .forms import BookingForm
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import BookingSerializer
+from .serializers import BookingSerializer, MenuItemUpdateSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import (
     ListCreateAPIView, RetrieveUpdateDestroyAPIView,
@@ -60,6 +60,11 @@ class MenuItemUpdateView(UpdateAPIView):
     serializer_class = MenuItemSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'PUT':
+            return MenuItemUpdateSerializer  # Use different serializer for updates
+        return self.serializer_class
 
     def partial_update(self, request, *args, **kwargs):
         kwargs['partial'] = True

@@ -26,3 +26,13 @@ class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
         fields = '__all__' 
+
+
+# -------------------------------------For update API's only
+
+class MenuItemUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MenuItem
+        exclude = ['user']  # Exclude user field for updates
+
+
