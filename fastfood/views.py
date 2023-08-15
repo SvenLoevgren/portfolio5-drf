@@ -12,7 +12,7 @@ from .serializers import BookingSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import (
     ListCreateAPIView, RetrieveUpdateDestroyAPIView,
-    ListAPIView, DestroyAPIView
+    ListAPIView, DestroyAPIView, UpdateAPIView
 )
 from .serializers import BookingSerializer, MenuItemSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -52,6 +52,14 @@ class MenuItemDeleteView(DestroyAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
+# ---------------------------------------------Menu Update
+
+
+class MenuItemUpdateView(UpdateAPIView):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 # ------------------------------------------------------Booking Views for drf
 
