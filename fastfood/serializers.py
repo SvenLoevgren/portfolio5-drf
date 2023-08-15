@@ -33,6 +33,4 @@ class MenuItemSerializer(serializers.ModelSerializer):
 class MenuItemUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
-        exclude = ['user']  # Exclude user field for updates
-
-
+        exclude = ['user', 'description']  # Exclude user field for updates
