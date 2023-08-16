@@ -39,7 +39,27 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 TOKEN_KEY = os.environ.get('TOKEN_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
 
 ALLOWED_HOSTS = ["fastfood-drf-dfd5756f86e9.herokuapp.com", "localhost", "8000-svenloevgre-portfolio5d-7iyekitlmwd.ws-eu103.gitpod.io"]
 
