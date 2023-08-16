@@ -8,7 +8,7 @@ from .forms import BookingForm
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import BookingSerializer, MenuItemUpdateSerializer
+from .serializers import BookingSerializer, MenuItemUpdateSerializer, MenuItemCreateSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import (
     ListCreateAPIView, RetrieveUpdateDestroyAPIView,
@@ -73,6 +73,27 @@ class MenuItemUpdateView(UpdateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.data)
+
+# ---------------------------------------------Booking Create
+
+
+class MenuItemCreateView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, format=None):
+        menu_items_data = request.data
+        created_items = []
+
+        for item_data in menu_items_data:
+            serializer = MenuItemCreateSerializer(data=item_data)
+            if serializer.is_valid():
+                serializer.save(user=request.user)
+                created_items.append(serializer.data)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(created_items, status=status.HTTP_201_CREATED)
 
 # ------------------------------------------------------Booking Views for drf
 

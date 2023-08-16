@@ -15,8 +15,7 @@ class BookingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Booking
-        fields = '__all__' 
-# recommended fields if not using "all" = ['id', 'customer_name', 'email', 'phone_number', 'date', 'time', 'num_seats', 'user']
+        fields = '__all__'
 
 
 class MenuItemSerializer(serializers.ModelSerializer):
@@ -28,7 +27,13 @@ class MenuItemSerializer(serializers.ModelSerializer):
         fields = '__all__' 
 
 
-# -------------------------------------For update API's only
+class MenuItemCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MenuItem
+        fields = '__all__'
+
+# -------------------------------------For the update API only (crUd)
+
 
 class MenuItemUpdateSerializer(serializers.ModelSerializer):
     class Meta:

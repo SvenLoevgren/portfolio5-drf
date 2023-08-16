@@ -2,7 +2,8 @@ from django.urls import path
 from .views import (
     MenuAPIView,
     MenuItemDeleteView,
-    MenuItemUpdateView
+    MenuItemUpdateView,
+    MenuItemCreateView
 )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
@@ -14,5 +15,5 @@ urlpatterns = [
     path('menu/', MenuAPIView.as_view(), name='menu-list'), 
     path('menu/item/<int:pk>/delete/', MenuItemDeleteView.as_view(), name='menu-item-delete'),
     path('menu/item/<int:pk>/update/', MenuItemUpdateView.as_view(), name='menu-item-update'),
-
+    path('menu/items/create/', MenuItemCreateView.as_view(), name='menu-item-create'),
 ]
