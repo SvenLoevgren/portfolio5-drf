@@ -30,7 +30,7 @@ class MenuItemSerializer(serializers.ModelSerializer):
 class MenuItemCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
-        fields = '__all__'
+        fields = ['title', 'name', 'price', 'quantity', 'description']
 
 # -------------------------------------For the update API only (crUd)
 
