@@ -150,70 +150,10 @@ class MenuItem(models.Model):
         ('Fresh Rose hip Smoothie made from wild rose hips gathered in the forests of Sweden', 'Fresh Rose hip Smoothie made from wild rose hips gathered in the forests of Sweden'),
     )
 
-    PRICE_CHOICES = (
-        (5.99, 5.99),
-        (6.49, 6.49),
-        (5.79, 5.79),
-        (6.99, 6.99),
-        (5.89, 5.89),
-        (5.59, 5.59),
-        (7.99, 7.99),
-        (6.49, 6.49),
-        (6.99, 6.99),
-        (6.49, 6.49),
-        (7.29, 7.29),
-        (6.19, 6.19),
-        (5.99, 5.99),
-        (8.49, 8.49),
-        (3.33, 3.33),
-        (4.99, 4.99),
-        (5.49, 5.49),
-        (4.79, 4.79),
-        (4.99, 4.99),
-        (0.99, 0.99),
-        (0.49, 0.49),
-        (0.39, 0.39),
-        (0.59, 0.59),
-        (4.99, 4.99),
-        (5.29, 5.29),
-        (4.79, 4.79),
-        (4.49, 4.49),
-        (3.99, 3.99),
-        (3.99, 3.99),
-        (0.29, 0.29),
-        (0.89, 0.89),
-        (0.79, 0.79),
-        (0.49, 0.49),
-        (0.69, 0.69),
-        (1.49, 1.49),
-        (0.39, 0.39),
-        (2.49, 2.49),
-        (3.99, 3.99),
-        (0.11, 0.11),
-        (0.11, 0.11),
-        (0.13, 0.13),
-        (0.13, 0.13),
-        (2.39, 2.39),
-        (4.40, 4.40),
-        (6.50, 6.50),
-        (1.10, 1.10),
-        (1.10, 1.10),
-        (1.10, 1.10),
-        (1.00, 1.00),
-        (1.00, 1.00),
-        (1.00, 1.00),
-        (1.00, 1.00),
-        (2.00, 2.00),
-        (2.00, 2.00),
-        (2.00, 2.00),
-        (1.50, 1.50),
-        (1.50, 1.50),
-    )
-
     title = models.CharField(max_length=30, choices=CATEGORY_CHOICES)
     name = models.CharField(max_length=30, choices=NAME_CHOICES)
     description = models.TextField(max_length=1000, choices=DESCRIPTION_CHOICES)
-    price = models.DecimalField(max_digits=6, decimal_places=2, choices=PRICE_CHOICES)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
     quantity = models.PositiveIntegerField(default=0)
     user = models.ForeignKey(User, default=User.objects.get(is_superuser=True).pk, on_delete=models.CASCADE)
 
