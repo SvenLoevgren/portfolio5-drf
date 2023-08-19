@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import BookingSerializer, MenuItemUpdateSerializer, MenuItemCreateSerializer
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import (
     ListCreateAPIView, RetrieveUpdateDestroyAPIView,
     ListAPIView, DestroyAPIView, UpdateAPIView
@@ -78,10 +78,8 @@ class MenuItemUpdateView(UpdateAPIView):
 
 
 class MenuItemCreateView(APIView):
-    authentication_classes = []
-    permission_classes = [AllowAny]
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, format=None):
         menu_items_data = request.data
