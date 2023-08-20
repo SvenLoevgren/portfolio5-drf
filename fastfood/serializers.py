@@ -36,11 +36,10 @@ class MenuItemSerializer(serializers.ModelSerializer):
 
 
 class MenuItemCreateSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
 
     class Meta:
         model = MenuItem
-        fields = ['title', 'name', 'price', 'quantity', 'description', 'user']
+        exclude = ['user']
 
 # ------------------------------------For the Menu update API only (crUd)
 
