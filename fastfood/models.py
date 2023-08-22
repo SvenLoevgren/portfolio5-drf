@@ -17,16 +17,16 @@ class Booking(models.Model):
 
 class MenuItem(models.Model):
     CATEGORY_CHOICES = (
-        ('Rainbow Burgers', 'Rainbow Burgers'),
-        ('No chicken Burgers', 'No chicken Burgers'),
-        ('No chicken', 'No chicken'),
+        ('Rainbow_Burgers', 'Rainbow_Burgers'),
+        ('No_chicken_Burgers', 'No_chicken_Burgers'),
+        ('No_chicken', 'No_chicken'),
         ('Wraps', 'Wraps'),
-        ('Wraps Dressings', 'Wraps Dressings'),
+        ('Wraps_Dressings', 'Wraps_Dressings'),
         ('Accessories', 'Accessories'),
         ('Desserts', 'Desserts'),
         ('Dip', 'Dip'),
         ('Drinks', 'Drinks'),
-        ('Add-ons', 'Add-ons'),
+        ('Add_ons', 'Add_ons'),
         ('Snacks', 'Snacks'),
     )
 
@@ -154,7 +154,7 @@ class MenuItem(models.Model):
     name = models.CharField(max_length=30, choices=NAME_CHOICES)
     description = models.TextField(max_length=1000, choices=DESCRIPTION_CHOICES)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    quantity = models.PositiveIntegerField(default=0)
+    quantity = models.PositiveIntegerField(default=1)
     user = models.ForeignKey(User, default=User.objects.get(is_superuser=True).pk, on_delete=models.CASCADE)
 
     def __str__(self):
