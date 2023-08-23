@@ -10,7 +10,6 @@ from django.conf import settings
 
 urlpatterns = [
     path('', fastfood_home, name='fastfood_home'),
-    path('accounts/', include('allauth.urls')),
     path('unauthorized/', unauthorized, name='unauthorized'),
     path('booking/', booking, name='booking'),
     path('bookings/', booking_list, name='bookings'),
