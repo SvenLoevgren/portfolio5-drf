@@ -62,7 +62,7 @@ LOGGING = {
 }
 """
 
-ALLOWED_HOSTS = ["fastfood-drf-dfd5756f86e9.herokuapp.com", "localhost", "8000-svenloevgre-portfolio5d-7iyekitlmwd.ws-eu104.gitpod.io"]
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split()
 
 CSRF_TRUSTED_ORIGINS = [
     'https://github.com',
