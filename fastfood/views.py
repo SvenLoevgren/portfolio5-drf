@@ -1,7 +1,4 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from allauth.account.views import LoginView as AllauthLoginView
-from allauth.account.views import SignupView as AllauthSignupView
-from allauth.account.views import LogoutView as AllauthLogoutView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
@@ -29,40 +26,6 @@ def user_is_owner(user, user_id):
     return str(user.id) == user_id
 
 # ------------------------------------------------------Menu Views for REACT app
-
-# ---------------------------------------------Menu Login
-
-
-class CustomLoginView(AllauthLoginView):
-    def get_success_url(self):
-        # Customize the redirect URL based on whether the user is coming from the React app
-        if 'react_app' in self.request.GET:
-            return reverse_lazy('https://our-menu-d0e32a53de6f.herokuapp.com')
-        else:
-            return super().get_success_url()
-
-# ---------------------------------------------Menu Logout
-
-
-class CustomLogoutView(AllauthLogoutView):
-    def get_success_url(self):
-        # Customize the redirect URL based on whether the user is coming from the React app
-        if 'react_app' in self.request.GET:
-            return reverse_lazy('https://our-menu-d0e32a53de6f.herokuapp.com')
-        else:
-            return super().get_success_url()
-
-
-# ---------------------------------------------Menu Signup
-
-
-class CustomSignupView(AllauthSignupView):
-    def get_success_url(self):
-        # Customize the redirect URL based on whether the user is coming from the React app
-        if 'react_app' in self.request.GET:
-            return reverse_lazy('https://our-menu-d0e32a53de6f.herokuapp.com')
-        else:
-            return super().get_success_url()
 
 # ---------------------------------------------Menu Read
 
