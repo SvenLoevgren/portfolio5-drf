@@ -105,10 +105,10 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),  # Longer access token lifetime
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=30),  # Refresh token lifetime
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=5),  # Longer access token lifetime
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=14),  # Refresh token lifetime
     'SLIDING_TOKEN_LIFETIME': timedelta(days=30),
-    'SLIDING_TOKEN_REFRESH_LIFETIME_GRACE_PERIOD': timedelta(days=7),  # Grace period for token refresh
+    'SLIDING_TOKEN_REFRESH_LIFETIME_GRACE_PERIOD': timedelta(days=6),  # Grace period for token refresh
     'SLIDING_TOKEN_REFRESH_LIFETIME_ALLOW_SAME_ORIGIN': False,
     'SLIDING_TOKEN_REFRESH_LIFETIME_ALTERNATE_REFRESH_URLS': None,
 }
