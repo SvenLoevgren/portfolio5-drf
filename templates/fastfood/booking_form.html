@@ -2,76 +2,75 @@
 
 
 {% block content %}
-<form method="POST" id="base_div">
-    {% csrf_token %}
-        <div class="row mb-3">
-            <label for="form.customer_name.id_for_label" class="col-sm-2 col-form-label">Customer Name</label>
-            <div class="col-sm-10">
-{{ form.customer_name }}
-<!-- Editable form field inheritedd from BookingForm -->
+    <form method="POST" id="base_div">
+        {% csrf_token %}
+            <div class="row mb-3">
+                <label for="form.customer_name.id_for_label" class="col-sm-2 col-form-label">Customer Name</label>
+                <div class="col-sm-10">
+        <!-- Editable form field inheritedd from BookingForm -->
+        {{ form.customer_name }}
+                </div>
+            </div>    
+            <div class="row mb-3">
+                <label for="{{ form.email.id_for_label }}" class="col-sm-2 col-form-label">Email:</label> 
+                <div class="col-sm-10">
+        <!-- Editable form field inheritedd from BookingForm -->
+        {{ form.email }}
+                </div>
+            <div class="row mb-3">
+                <label for="form.phone_number.id_for_label" class="col-sm-2 col-form-label">Phone number:</label>
+                <div class="col-sm-10">
+        <!-- Editable form field inheritedd from BookingForm -->           
+        {{ form.phone_number }}
+                </div>
             </div>
-        </div>    
-        <div class="row mb-3">
-            <label for="{{ form.email.id_for_label }}" class="col-sm-2 col-form-label">Email:</label> 
-            <div class="col-sm-10">
-{{ form.email }}
-<!-- Editable form field inheritedd from BookingForm -->
+            <div class="row mb-3">
+                <label for="form.id_date.id_for_label" class="col-sm-2 col-form-label">Date:</label>
+                <div class="col-sm-10">
+        <!-- Editable form field inheritedd from BookingForm -->
+        {{ form.date }}
+                </div>
             </div>
-        <div class="row mb-3">
-            <label for="form.phone_number.id_for_label" class="col-sm-2 col-form-label">Phone number:</label>
-            <div class="col-sm-10">
-{{ form.phone_number }}
-<!-- Editable form field inheritedd from BookingForm -->
+            <div class="row mb-3">
+                <label for="form.id_time.id_for_label" class="col-sm-2 col-form-label">Time:</label>
+                <div class="col-sm-10">
+        <!-- Editable form field inheritedd from BookingForm -->
+        {{ form.time }}
+                </div>
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="form.id_date.id_for_label" class="col-sm-2 col-form-label">Date:</label>
-            <div class="col-sm-10">
-{{ form.date }}
-<!-- Editable form field inheritedd from BookingForm -->
+            <div class="row mb-3">
+                <label for="form.num_seats.id_for_label" class="col-sm-2 col-form-label">Num seats:</label>
+                <div class="col-sm-10">
+        <!-- Editable form field inheritedd from BookingForm -->
+        {{ form.num_seats }}
+                </div>
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="form.id_time.id_for_label" class="col-sm-2 col-form-label">Time:</label>
-            <div class="col-sm-10">
-{{ form.time }}
-<!-- Editable form field inheritedd from BookingForm -->
+            <div class="row mb-3">
+                <label for="form.user.id_for_label" class="col-sm-2 col-form-label">User:</label>
+                <div class="col-sm-10">
+        <!-- Displayes user from BookingForm -->
+        {{ booking.user }}
+                </div>
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="form.num_seats.id_for_label" class="col-sm-2 col-form-label">Num seats:</label>
-            <div class="col-sm-10">
-{{ form.num_seats }}
-<!-- Editable form field inheritedd from BookingForm -->
+            <input type="submit" value="Save" class="btn btn-primary mx-auto" id="join-button">
+            {% if form.errors %}
+            <div class="messages text-center">
+                <p class="text-danger">Please correct the following errors:</p>
+                <ul class="text-danger">
+                    {% for field in form %}
+                    {% if field.errors %}
+                    <li>{{ field.label }}: {{ field.errors|join:", " }}</li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
-        </div>
-        <div class="row mb-3">
-            <label for="form.user.id_for_label" class="col-sm-2 col-form-label">User:</label>
-            <div class="col-sm-10">
-{{ booking.user }}
-<!-- Displayes user from BookingForm -->
-            </div>
-        </div>
-        <input type="submit" value="Save" class="btn btn-primary mx-auto" id="join-button">
-        {% if form.errors %}
-        <div class="messages text-center">
-            <p class="text-danger">Please correct the following errors:</p>
-            <ul class="text-danger">
-                {% for field in form %}
-                {% if field.errors %}
-                <li>{{ field.label }}: {{ field.errors|join:", " }}</li>
-                {% endif %}
+            {% endif %}            
+            {% if messages %}
+            <div class="messages text-center">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
                 {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
-        
-        {% if messages %}
-        <div class="messages text-center">
-            {% for message in messages %}
-                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-            {% endfor %}
-        </div>
-        {% endif %}
-</form>
+            </div>
+            {% endif %}
+    </form>
 {% endblock %}

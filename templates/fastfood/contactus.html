@@ -1,141 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
-    {% load static %}
-    <link rel='shortcut icon' type='image/x-icon' href='{% static "images/favicon.ico" %}' />
-    <link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}' />
-    <title>MoreVegans</title>
-    <script type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
-    </script>
-    <script type="text/javascript">
-        (function(){
-        emailjs.init("CQE6EpU7t3bA4gtmJ");
-        })();
-    </script>  
-</head>
-<body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-        <div class="container-fluid" id="navbar-color">
-            <div class="navbar-brand">
-                <a>
-                    <img class="navbar-brand-img" src='{% static "img/logo.png" %}' alt="Site-Logo" width="55" height="44">
-                    <span class="logo-text ms-2 fw-bold" style="font-size: 1.2rem;"><em>MoreVegans</em> |</span>
-                </a>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+        {% load static %}
+        <link rel='shortcut icon' type='image/x-icon' href='{% static "images/favicon.ico" %}' />
+        <link rel="stylesheet" type="text/css" href='{% static "css/main.css" %}' />
+        <title>MoreVegans</title>
+        <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+        </script>
+        <script type="text/javascript">
+            (function(){
+            emailjs.init("CQE6EpU7t3bA4gtmJ");
+            })();
+        </script>  
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+                <div class="container-fluid" id="navbar-color">
+                    <div class="navbar-brand">
+                        <a>
+                            <img class="navbar-brand-img" src='{% static "img/logo.png" %}' alt="Site-Logo" width="55" height="44">
+                            <span class="logo-text ms-2 fw-bold" style="font-size: 1.2rem;"><em>MoreVegans</em> |</span>
+                        </a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLinks" aria-controls="navbarLinks" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarLinks">
+                    <div class="d-lg-flex justify-content-lg-end">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" 
+                                href="{% url 'fastfood_home' %}">Home <i class="fa fa-home"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" 
+                                href="{% url 'booking' %}">Booking <i class="fa fa-calendar"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'contactus' %}">Contact <i class="fa fa-envelope"></i></a>
+                            </li>
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_logout' %}">Logout <i class="fa fa-sign-out"></i></a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_signup' %}">Register <i class="fa fa-check"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_login' %}">Login <i class="fa fa-user"></i></a>
+                            </li>
+                            {% endif %}
+                            <li class="nav-item {% if not user.is_authenticated %}disabled{% endif %}">
+                                {% if user.is_authenticated %}
+                                    <a class="nav-link" aria-current="page" href="{% url 'bookings' %}">View/edit-Bookings <i class="fa fa-calendar"></i></a>
+                                {% else %}
+                                    <a class="nav-link" href="#" onclick="alert('Please login to access your bookings.')">View/edit-Bookings <i class="fa fa-calendar"></i></a>
+                                {% endif %}
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://our-menu-d0e32a53de6f.herokuapp.com/">Food Menu <i class="fa fa-cutlery"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
             </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLinks" aria-controls="navbarLinks" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarLinks">
-            <div class="d-lg-flex justify-content-lg-end">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" 
-                        href="{% url 'fastfood_home' %}">Home <i class="fa fa-home"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" 
-                        href="{% url 'booking' %}">Booking <i class="fa fa-calendar"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'contactus' %}">Contact <i class="fa fa-envelope"></i></a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_logout' %}">Logout <i class="fa fa-sign-out"></i></a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_signup' %}">Register <i class="fa fa-check"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_login' %}">Login <i class="fa fa-user"></i></a>
-                    </li>
-                    {% endif %}
-                    <li class="nav-item {% if not user.is_authenticated %}disabled{% endif %}">
-                        {% if user.is_authenticated %}
-                            <a class="nav-link" aria-current="page" href="{% url 'bookings' %}">View/edit-Bookings <i class="fa fa-calendar"></i></a>
-                        {% else %}
-                            <a class="nav-link" href="#" onclick="alert('Please login to access your bookings.')">View/edit-Bookings <i class="fa fa-calendar"></i></a>
-                        {% endif %}
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://our-menu-d0e32a53de6f.herokuapp.com/">Food Menu <i class="fa fa-cutlery"></i></a>
-                    </li>
-                </ul>
+        </nav>
+        <section id="section4" class="container-fluid">
+            <div id="div4" class="col-md-12">
+                <div class="d-flex justify-content-center text-center">
+                    <p>You can either call us on <strong>+461234567890</strong>,
+                        or fill out the form below to send us your question...<br>
+                        But <strong>please notice</strong> that if you need to <br><em>"book a table",</em><br>
+                        then you need to navigate to our 
+                        <br><em><a id="booking-link" href="{% url 'booking' %}">
+                            "booking link <i class="fa fa-calendar"></i></a></em>"
+                    </p>
+                </div>
             </div>
+            <div class="container-fluid">
+                <form onsubmit="return sendMail(this);">
+                    {% csrf_token %}
+                    <div id="text-input-field" class="mb-3"> 
+                        <input type="text" name="name" class="form-control field-text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div id="text-input-field" class="mb-3">
+                        <input type="email" name="emailaddress" class="form-control field-text" id="emailaddress" placeholder="Your Email" required>
+                    </div>
+                    <div id="text-input-field" class="mb-3">
+                        <textarea rows="5" name="projectsummary" class="form-control field-text" id="projectsummary" placeholder="Your Question" required></textarea>
+                    </div>
+                    <button type="submit" id="join-button" class="btn btn-secondary d-block mx-auto">Send email!</button>
+                </form>
             </div>
-      </div>
-</nav>
-<section id="section4" class="container-fluid">
-    <div id="div4" class="col-md-12">
-        <div class="d-flex justify-content-center text-center">
-            <p>You can either call us on <strong>+461234567890</strong>,
-                 or fill out the form below to send us your question...<br>
-                But <strong>please notice</strong> that if you need to <br><em>"book a table",</em><br>
-                 then you need to navigate to our 
-                 <br><em><a id="booking-link" href="{% url 'booking' %}">
-                    "booking link <i class="fa fa-calendar"></i></a></em>"
-            </p>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <form onsubmit="return sendMail(this);">
-            {% csrf_token %}
-            <div id="text-input-field" class="mb-3"> 
-                <input type="text" name="name" class="form-control field-text" id="name" placeholder="Your Name" required>
+        </section>
+        <footer class="container-fluid">
+            <div id="footer-details" class="row">
+                <div class="col-sm-9">
+                    <h5 class="uppercase general-sub">Copyrights</h5>
+                    <p class="inline-block">
+                        © 2023 By Sven Loevgren. Proudly created with github
+                    </p>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Social</h5>
+                    <ul class="list-inline social-links">
+                        <li class="list-inline-item">
+                            <a target="_blank" href="https://www.facebook.com/sven.lovgren">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    <span class="sr-only">Facebook</span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a target="_blank" href="https://www.linkedin.com/in/sven-l%C3%B6vgren-514486175">
+                                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                    <span class="sr-only">LinkedIn</span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a target="_blank" href="https://instagram.com/braazzil?igshid=ZDdkNTZiNTM=">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                    <span class="sr-only">Instagram</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div id="text-input-field" class="mb-3">
-                <input type="email" name="emailaddress" class="form-control field-text" id="emailaddress" placeholder="Your Email" required>
-            </div>
-            <div id="text-input-field" class="mb-3">
-                <textarea rows="5" name="projectsummary" class="form-control field-text" id="projectsummary" placeholder="Your Question" required></textarea>
-            </div>
-            <button type="submit" id="join-button" class="btn btn-secondary d-block mx-auto">Send email!</button>
-        </form>
-    </div>
-</section>
-<footer class="container-fluid">
-  <div id="footer-details" class="row">
-      <div class="col-sm-9">
-          <h5 class="uppercase general-sub">Copyrights</h5>
-          <p class="inline-block">
-                © 2023 By Sven Loevgren. Proudly created with github
-          </p>
-      </div>
-      <div class="col-sm-3">
-          <h5>Social</h5>
-          <ul class="list-inline social-links">
-              <li class="list-inline-item">
-                  <a target="_blank" href="https://www.facebook.com/sven.lovgren">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                        <span class="sr-only">Facebook</span>
-                  </a>
-              </li>
-              <li class="list-inline-item">
-                  <a target="_blank" href="https://www.linkedin.com/in/sven-l%C3%B6vgren-514486175">
-                        <i class="fa fa-linkedin" aria-hidden="true"></i>
-                        <span class="sr-only">LinkedIn</span>
-                  </a>
-              </li>
-              <li class="list-inline-item">
-                  <a target="_blank" href="https://instagram.com/braazzil?igshid=ZDdkNTZiNTM=">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-                        <span class="sr-only">Instagram</span>
-                  </a>
-              </li>
-          </ul>
-      </div>
-  </div>
-</footer>
-<script src="{% static 'js/sendEmail.js' %}"></script> 
-</body>
+        </footer>
+        <script src="{% static 'js/sendEmail.js' %}"></script> 
+    </body>
 </html>
 
