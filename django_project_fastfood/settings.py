@@ -86,6 +86,7 @@ INSTALLED_APPS = [
     'django.views.static',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     'crispy_forms',
     'avatar',
     'corsheaders',
