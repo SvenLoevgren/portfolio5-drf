@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import include, path
 
+# ----------- MAIN urls
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # drf app urls
