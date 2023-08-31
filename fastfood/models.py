@@ -5,6 +5,7 @@ from django.core.validators import RegexValidator
 
 
 class Booking(models.Model):
+    """ Model for drf APP bookings """
     customer_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=255)
     phone_number_regex = RegexValidator(regex=r'^\+?\d{1,3}[-\.\s]?\d{1,14}[-\.\s]?\d{1,14}$')
@@ -16,6 +17,9 @@ class Booking(models.Model):
 
 
 class MenuItem(models.Model):
+    """ Model for react App menu """
+
+    """ React App menu titles """
     CATEGORY_CHOICES = (
         ('Rainbow_Burgers', 'Rainbow_Burgers'),
         ('No_chicken_Burgers', 'No_chicken_Burgers'),
@@ -30,6 +34,7 @@ class MenuItem(models.Model):
         ('Snacks', 'Snacks'),
     )
 
+    """ React Apps menu names """
     NAME_CHOICES = (
         ('Aurantius (Carrot)', 'Aurantius (Carrot)'),
         ('Chiorus (Avocado)', 'Chiorus (Avocado)'),
@@ -68,7 +73,7 @@ class MenuItem(models.Model):
         ('Cheese (Tofu)', 'Cheese (Tofu)'),
         ('Spicy', 'Spicy'),
         ('French Fries', 'French Fries'),
-        ('Salad', 'Salad'),  # last updates
+        ('Salad', 'Salad'),
         ('Pickles', 'Pickles'),
         ('Tomatos', 'Tomatos'),
         ('Bacon (Rice paper)', 'Bacon (Rice paper)'),
@@ -90,6 +95,7 @@ class MenuItem(models.Model):
         ('smoothie (Rose hip)', 'smoothie (Rose hip)'),
     )
 
+    """ React Apps name descriptions """
     DESCRIPTION_CHOICES = (
         ('Basic Ingredients= Only plants with vegetable oil, no E-topiccs or gluten and Carrots added as topping -for a tastier outcome', 'Basic Ingredients= Only plants with vegetable oil, no E-topiccs or gluten and Carrots added as topping -for a tastier outcome'),
         ('Basic Ingredients= Only plants with vegetable oil, no E-topiccs or gluten and Avocado added as topping -for a tastier outcome', 'Basic Ingredients= Only plants with vegetable oil, no E-topiccs or gluten and Avocado added as topping -for a tastier outcome'),
@@ -163,80 +169,3 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return self.name
-
-
-"""
-Keep tuple price data for feature use...
-PRICE_CHOICES = (
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (6.55, 6.55),
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (6.55, 6.55),
-    (3.33, 3.33),
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (5.55, 5.55),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (2.22, 2.22),
-    (2.22, 2.22),
-    (2.22, 2.22),
-    (2.22, 2.22),
-    (2.44, 2.44),
-    (2.44, 2.44),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (1.33, 1.33),
-    (1.36, 1.36),
-    (1.66, 1.66),
-    (0.11, 1.11),
-    (2.11, 1.11),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (1.11, 1.11),
-    (2.22, 2.22),
-    (2.22, 2.22),
-    (3.33, 3.33),
-    (1.22, 1.22),
-    (1.22, 1.22),
-    (1.22, 1.22),
-    (1.11, 1.11),
-    (1.22, 1.22),
-    (1.22, 1.22),
-    (1.22, 1.22),
-    (2.22, 2.22),
-    (2.22, 2.22),
-    (2.22, 2.22),
-    (1.55, 1.55),
-    (1.55, 1.55),
-)
-
-
-Alo, # for future implementation... Keep availability model!
-
-class Availability(models.Model):
-    date = models.DateField()
-    time = models.TimeField()
-    max_seats_available = models.PositiveIntegerField()
-    num_available_seats = models.PositiveIntegerField()
-"""

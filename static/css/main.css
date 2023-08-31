@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700');
 
-/* ----------------------------------------User signIn, Signout and Signup - allauth templates */
+/* -----------------------------allauth templates */
 
 .hidden-text {
     display: none;
 }
 
 .allauth-background {
-        background-image: url("../img/allauth_background.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+    background-image: url("../img/allauth_background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .allauth-Links:hover {
@@ -216,25 +216,6 @@ td:hover {
     color: #f16c6b;
 }
 
-/*  These buttons below has been moved
-    to the allauth section
-    on top of this file
-    Please keep this comment!!!
-
-.allauth-submit-button {
-    color: #fafafa;
-    background-color: #3a07f0;  
-    font-weight: 600;  
-}
-
-.allauth-submit-button:hover {
-    background-color: #2603a7;   
-    font-weight: 700; 
-}
-    Keep comment */
-
-/* -------------------------------------------links */
-
 #booking-link {
     text-decoration: none;
     color: black;    
@@ -263,7 +244,7 @@ td:hover {
     margin-top: 4%;
 }
 
-/* -------------------------------------Mediascreens */
+/* -------------------------------------Mediascreens 1000 width */
 
 @media screen and (max-width: 1000px){
 
@@ -285,6 +266,8 @@ td:hover {
 
 }
 
+/* -------------------------------------Mediascreens 1000 width */
+
 @media screen and (max-width: 600px){
 
     #div4 {
@@ -302,5 +285,4 @@ td:hover {
     #message_div {
         padding-top: 33%;
     }
-
 }

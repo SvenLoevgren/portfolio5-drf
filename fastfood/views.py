@@ -27,7 +27,7 @@ def user_is_owner(user, user_id):
 
 # ------------------------------------------------------Menu Views for REACT app
 
-# ---------------------------------------------Menu Read
+# ------------------react----------------------Menu Read
 
 
 class MenuAPIView(APIView):
@@ -44,7 +44,7 @@ class MenuAPIView(APIView):
         # Return the serialized data as a JSON response
         return Response(serializer.data)
 
-# ---------------------------------------------Menu Delete
+# ------------------react----------------------Menu Delete
 
 
 class MenuItemDeleteView(DestroyAPIView):
@@ -53,7 +53,7 @@ class MenuItemDeleteView(DestroyAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-# ---------------------------------------------Menu Update
+# ------------------react----------------------Menu Update
 
 
 class MenuItemUpdateView(UpdateAPIView):
@@ -64,7 +64,7 @@ class MenuItemUpdateView(UpdateAPIView):
 
     def get_serializer_class(self):
         if self.request.method == 'PUT':
-            return MenuItemUpdateSerializer  # Use different serializer for updates
+            return MenuItemUpdateSerializer
         return self.serializer_class
 
     def partial_update(self, request, *args, **kwargs):
@@ -75,7 +75,7 @@ class MenuItemUpdateView(UpdateAPIView):
         self.perform_update(serializer)
         return Response(serializer.data)
 
-# ---------------------------------------------Menu Create
+# ------------------react----------------------Menu Create
 
 
 class MenuItemCreateView(APIView):
@@ -96,9 +96,9 @@ class MenuItemCreateView(APIView):
 
         return Response(created_items, status=status.HTTP_201_CREATED)
 
-# ------------------------------------------------------Booking Views for drf
+# ------------------------------------------------------Booking Views for drf App
 
-# ---------------------------------------------Booking Create
+# ---------------------drf---------------------Booking Create
 
 
 def booking(request):
@@ -114,7 +114,7 @@ def booking(request):
         form = BookingForm()
     return render(request, 'fastfood/booking.html', {'form': form})
 
-# ---------------------------------------------Booking List
+# ---------------------drf---------------------Booking Read
 
 
 def booking_list(request):
@@ -122,7 +122,7 @@ def booking_list(request):
     context = {'bookings': bookings}
     return render(request, 'fastfood/booking_list.html', context)
 
-# --------------------------------------------Booking Details
+# ---------------------drf---------------------Booking Details
 
 
 def edit_booking(request, user_id, booking_id):
@@ -138,7 +138,7 @@ def edit_booking(request, user_id, booking_id):
         # Handle unauthorized access if user tries to change URL in the web-browser
         return redirect('unauthorized')
 
-# --------------------------------------------Booking Detele
+# ---------------------drf---------------------Booking Delete
 
 
 def delete_booking(request):
@@ -159,7 +159,7 @@ protected_delete_view = user_passes_test(
     lambda u: user_is_owner(u, user_id), login_url='unauthorized')
 (ProtectedBookingDeleteView.as_view())
 
-# --------------------------------------------Booking Update
+# ---------------------drf---------------------Booking Update
 
 
 class ProtectedBookingUpdateView(LoginRequiredMixin, UpdateView):
@@ -190,7 +190,7 @@ protected_update_view = user_passes_test(
 def booking_update(request):
     return render(request, 'fastfood/booking_form.html')
 
-# --------------------------------------------------------Drf app views
+# --------------------------------------------------Other drf app views
 
 
 def fastfood_home(request):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Booking  # Import your models here, adjust the import if needed
+from .models import Booking
 from django.contrib.auth.models import User
 from .models import MenuItem
 
@@ -7,13 +7,14 @@ from .models import MenuItem
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email']  # Customize the fields to be exposed in the API
+        # Customize the fields to be exposed in the API
+        fields = ['id', 'username', 'email']
 
 # ------------------------------------------------------------------Bookings
 
 
 class BookingSerializer(serializers.ModelSerializer):
-    user = UserSerializer()  # Use the UserSerializer to include user details in the booking data
+    user = UserSerializer()
 
     class Meta:
         model = Booking
@@ -30,7 +31,7 @@ class MenuItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MenuItem
-        fields = '__all__' 
+        fields = '__all__'
 
 # ------------------------------------For the Menu Create API only (Crud)
 
@@ -47,4 +48,5 @@ class MenuItemCreateSerializer(serializers.ModelSerializer):
 class MenuItemUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
-        exclude = ['user', 'description']  # Exclude user field for updates
+        # Exclude user field for updates
+        exclude = ['user', 'description']

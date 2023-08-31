@@ -7,7 +7,7 @@ from .views import (
 )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-# -------------These api's are ste up for the REACT app CRUD and JWT tokens
+# ---------------------These api's are ste up for the REACT app CRUD and JWT tokens
 
 urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -16,5 +16,4 @@ urlpatterns = [
     path('menu/items/create/', MenuItemCreateView.as_view(), name='menu-item-create'),
     path('menu/item/<int:pk>/delete/', MenuItemDeleteView.as_view(), name='menu-item-delete'),
     path('menu/item/<int:pk>/update/', MenuItemUpdateView.as_view(), name='menu-item-update'),
-
 ]

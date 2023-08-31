@@ -7,6 +7,7 @@ from .views import (
 from django.urls import include, path
 from django.conf import settings
 
+# ----------------------drf-App----------------------urls
 
 urlpatterns = [
     path('', fastfood_home, name='fastfood_home'),
