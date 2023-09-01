@@ -200,6 +200,12 @@ td:hover {
     font-weight: bold;
 }
 
+#join-button-2 {
+    background-color: #f16c6b;
+    color: #fafafa;
+    font-weight: bold;
+}
+
 #delete-button {
     background-color: #f16c6b;
     color: #fafafa;
@@ -266,7 +272,7 @@ td:hover {
 
 }
 
-/* -------------------------------------Mediascreens 1000 width */
+/* -------------------------------------Mediascreens 600 width */
 
 @media screen and (max-width: 600px){
 
@@ -285,4 +291,14 @@ td:hover {
     #message_div {
         padding-top: 33%;
     }
+}
+
+
+/* -------------------------------------Mediascreens 400 width */
+
+@media screen and (max-width: 400px){
+    .text-width {
+        width: 100%;
+    }
+
 }
