@@ -297,8 +297,8 @@ td:hover {
 /* -------------------------------------Mediascreens 400 width */
 
 @media screen and (max-width: 400px){
-    .text-width {
-        width: 100%;
+    #text-width {
+        font-size: 13px;
     }
 
 }
