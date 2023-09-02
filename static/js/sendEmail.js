@@ -7,11 +7,9 @@ function sendMail(contactForm) {
     })
     .then(
         function(response) {
-            console.log("SUCCESS", response);
             alert("Thanks... your question has been sent. We will get back to you soon!");
         },
         function(error) {
-            console.log("FAILED", error);
             alert("There was an error sending your question. Please try again later.");
         }
     );
